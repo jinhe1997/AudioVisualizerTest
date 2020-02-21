@@ -7,6 +7,12 @@ using UnityEngine.Audio;
 public class AudioVisualization : MonoBehaviour
 {
     public AudioSource _audioSource;
+    public static float[] _samples = new float[512];
+    public static float[] frequencyBand = new float[8];
+    public static float[] _BandBuffer = new float[8];
+    float[] BufferDecrease = new float[8];
+
+    #region input settings
 
     //麥克風輸入
     public bool usemicrophone;
@@ -15,8 +21,10 @@ public class AudioVisualization : MonoBehaviour
 
     public AudioMixerGroup _mixerGroupMicrophone, _mixerGroupMaster;
 
-    public static float[] _samples = new float[512];
-    public void Start()
+    #endregion
+
+
+    void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         if (usemicrophone)
@@ -29,7 +37,7 @@ public class AudioVisualization : MonoBehaviour
             }
             else
             {
-                Debug.Log("microphone is null");
+                Debug.Log("microphone is");
                 usemicrophone = false;
             }
 
@@ -44,20 +52,52 @@ public class AudioVisualization : MonoBehaviour
 
     void Update()
     {
-        if (_audioSource.clip != null)
-        {
-            GetSpectrumAudioSource();
-        }
-        if(_audioSource.clip = null)
-        {
-            Debug.Log("_audioSource.clip = null");
-        }
+        GetSpectrumAudioSource();
+        MakeFrequencyBand();
 
-        Debug.Log(Microphone.IsRecording(SelectedDevice).ToString());
+
     }
 
     void GetSpectrumAudioSource()
     {
         _audioSource.GetSpectrumData(_samples, 0, FFTWindow.Blackman);
+    }
+
+    void MakeFrequencyBand()
+    {
+        int count = 0;
+        for (int i = 0; i < 8; i++)
+        {
+            float average = 0;
+            int sampleCount = (int)Mathf.Pow(2, i) * 2;
+            if (i == 7)
+            {
+                sampleCount += 2;
+            }
+            for (int j = 0; j < sampleCount; j++)
+            {
+                average += _samples[count] * (count + 1);
+                count++;
+            }
+            average /= count;
+            frequencyBand[i] = average * 10;
+        }
+    }
+
+    void BandBuffer()
+    {
+        for (int g = 0; g < 8; ++g)
+        {
+            if (frequencyBand[g] > _BandBuffer[g])
+            {
+                _BandBuffer[g] = frequencyBand[g];
+                BufferDecrease[g] = 0.005f;
+            }
+            if (frequencyBand[g] < _BandBuffer[g])
+            {
+                _BandBuffer[g] -= frequencyBand[g];
+                BufferDecrease[g] *= 1.2f;
+            }
+        }
     }
 }
