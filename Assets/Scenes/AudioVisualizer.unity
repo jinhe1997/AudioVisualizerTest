@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269005318}
   m_LocalRotation: {x: 0.21971133, y: 0.0009848778, z: 0.0043730196, w: 0.97555465}
-  m_LocalPosition: {x: 6, y: 154, z: -623}
+  m_LocalPosition: {x: 6.01, y: 153.16, z: -628.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -329,6 +329,9 @@ MonoBehaviour:
   usemicrophone: 1
   m_audioclip: {fileID: 8300000, guid: 6d51b2d08c1d348e999197c29a0ed71c, type: 3}
   SelectedDevice: 
+  _mixerGroupMicrophone: {fileID: -1035076027305976379, guid: 61520f5fe43d24df193b540d71b9b256,
+    type: 2}
+  _mixerGroupMaster: {fileID: 24300002, guid: 61520f5fe43d24df193b540d71b9b256, type: 2}
 --- !u!82 &683325478
 AudioSource:
   m_ObjectHideFlags: 0
@@ -343,7 +346,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -952,7 +955,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _MaxScale: 1000
+  _MaxScale: 10000
 --- !u!4 &683325480
 Transform:
   m_ObjectHideFlags: 0
