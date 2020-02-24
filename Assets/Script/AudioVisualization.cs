@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class AudioVisualization : MonoBehaviour
 {
     public AudioSource _audioSource;
+    [SerializeField]
     public static float[] _samples = new float[512];
     public static float[] frequencyBand = new float[8];
     public static float[] _BandBuffer = new float[8];
