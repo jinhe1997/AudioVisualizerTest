@@ -17,7 +17,9 @@ public class ParamCube : MonoBehaviour
         }
         if (!UseBuffer)
         {
-            transform.localScale = new Vector3((AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale, (AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale, (AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale);
+            transform.localScale = new Vector3(Mathf.Abs(AudioVisualization.frequencyBand[_band] * _scaleMultiplier) * 0.01f + _startScale, Mathf.Abs(AudioVisualization.frequencyBand[_band] * _scaleMultiplier) * 0.01f, Mathf.Abs(AudioVisualization.frequencyBand[_band] * _scaleMultiplier) * 0.01f);
+
+            // transform.localScale = new Vector3((AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale, (AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale, (AudioVisualization.frequencyBand[_band] * _scaleMultiplier) + _startScale);
         }
     }
 }

@@ -496,7 +496,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 683325478}
-  usemicrophone: 1
+  SampleSize: 1024
+  sampleRate: 0
+  rmsValue: 0
+  dbValue: 0
+  pitchValue: 0
+  usemicrophone: 0
   m_audioclip: {fileID: 8300000, guid: 6d51b2d08c1d348e999197c29a0ed71c, type: 3}
   SelectedDevice: 
   _mixerGroupMicrophone: {fileID: -1035076027305976379, guid: 61520f5fe43d24df193b540d71b9b256,

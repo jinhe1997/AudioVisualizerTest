@@ -5,12 +5,12 @@ using UnityEngine;
 public class InstantiateEffects : MonoBehaviour
 {
     public GameObject EffectPrefab;
-    public GameObject[] sample_Effects = new GameObject[512];
+    public GameObject[] sample_Effects = new GameObject[1024];
     public float _MaxScale;
 
     void Start()
     {
-        for (int i = 0; i < 512; i++)
+        for (int i = 0; i < 1024; i++)
         {
             GameObject _intantanceSampleEffect = (GameObject)Instantiate(EffectPrefab);
             _intantanceSampleEffect.transform.position = this.transform.position;
@@ -24,11 +24,12 @@ public class InstantiateEffects : MonoBehaviour
 
     void Update()
     {
-        for (int i = 0; i < 512; i++)
+        for (int i = 0; i < 1024; i++)
         {
             if (sample_Effects != null)
             {
-                sample_Effects[i].transform.localScale = new Vector3(10, (AudioVisualization._samples [i] * _MaxScale) +2, 10);
+                sample_Effects[i].transform.localScale = new Vector3(10, (AudioVisualization._Spectrum[i] * _MaxScale) + 2, 10);
+                // sample_Effects[i].transform.localScale = new Vector3(10, (AudioVisualization._samples[i] * _MaxScale) + 2 * AudioVisualization.pitchValue, 10);
             }
         }
     }
